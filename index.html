@@ -258,28 +258,28 @@
         
         
         .item-image { 
-            background: linear-gradient(135deg, #faf8f3 0%, #f5efe0 50%, #faf8f3 100%);
+            background-color: #0a0a0f; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            padding: 15px; 
-            gap: 10px; 
+            padding: 40px; 
+            gap: 20px; 
             cursor: pointer; 
             transition: all 0.3s ease; 
-            min-height: 180px;
+            min-height: 240px;
         }
-        .item-image:hover { background: #eae3cf; }
+        .item-image:hover { background-color: #12121a; }
         .item-image:hover img { transform: scale(1.05); }
-        .item-image img { max-width: 60%; max-height: 150px; object-fit: contain; transition: transform 0.3s ease; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); }
+        .item-image img { max-width: 60%; max-height: 180px; object-fit: contain; transition: transform 0.3s ease; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); }
         .item-image::after {
             content: '🔍';
             position: absolute;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             opacity: 0;
             transition: opacity 0.3s ease;
-            color: #1a1a1a;
+            color: #c5a059;
         }
-        .item-image:hover::after { opacity: 0.7; }
+        .item-image:hover::after { opacity: 0.8; }
         
         .item-content { flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: center; background-color: #0a0a0f; color: #e0e0e0; }
         
