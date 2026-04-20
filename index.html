@@ -669,8 +669,8 @@
     </div>
 
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-nav lightbox-prev" id="lb-prev" onclick="navigateLightbox(-1)" style="display:none">❮</span>
-        <span class="lightbox-nav lightbox-next" id="lb-next" onclick="navigateLightbox(1)" style="display:none">❯</span>
+        <span class="lightbox-nav lightbox-prev" id="lb-prev" onclick="event.stopPropagation(); navigateLightbox(-1)" style="display:none">❮</span>
+        <span class="lightbox-nav lightbox-next" id="lb-next" onclick="event.stopPropagation(); navigateLightbox(1)" style="display:none">❯</span>
         <div class="lightbox-content" onclick="event.stopPropagation()">
             <span class="lightbox-close" onclick="closeLightbox()">✕</span>
             <img id="lightbox-img" src="" alt="Imagem ampliada">
@@ -726,6 +726,22 @@
             if (e.key === 'ArrowLeft' && currentImages.length > 1) navigateLightbox(-1);
             if (e.key === 'ArrowRight' && currentImages.length > 1) navigateLightbox(1);
         });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        const lightboxEl = document.getElementById('lightbox');
+        lightboxEl.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+        
+        lightboxEl.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (currentImages.length > 1) {
+                if (touchEndX < touchStartX - 50) navigateLightbox(1);
+                if (touchEndX > touchStartX + 50) navigateLightbox(-1);
+            }
+        }, {passive: true});
 
         // Intersection Observer para animações de scroll
         const observerOptions = {
