@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Comercial - GATIER | Papelaria de Luxo</title>
+    <meta name="description" content="Proposta de identidade tátil e papelaria de luxo para a marca GATIER.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: #050507; 
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(197, 160, 89, 0.08) 0%, transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(197, 160, 89, 0.06) 0%, transparent 30%),
+                radial-gradient(circle at 50% 10%, rgba(197, 160, 89, 0.04) 0%, transparent 25%),
+                radial-gradient(circle at 10% 90%, rgba(197, 160, 89, 0.05) 0%, transparent 25%),
+                linear-gradient(180deg, rgba(197, 160, 89, 0.02) 0%, transparent 30%, rgba(197, 160, 89, 0.02) 100%);
+            color: #f0f0f0; 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            position: relative;
+        }
+        
+        .bg-orbs {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .bg-orbs::before, .bg-orbs::after, .bg-orb {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+        }
+        
+        .bg-orbs::before {
+            width: 400px;
+            height: 400px;
+            background: #c5a059;
+            top: -100px;
+            left: -100px;
+            opacity: 0.08;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .bg-orbs::after {
+            width: 300px;
+            height: 300px;
+            background: #c5a059;
+            bottom: -50px;
+            right: -50px;
+            opacity: 0.06;
+            animation: float 25s infinite ease-in-out reverse;
+        }
+        
+        .bg-orb {
+            width: 250px;
+            height: 250px;
+            background: #c5a059;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.04;
+            animation: float-center 30s infinite ease-in-out;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L30 55M5 30L55 30' stroke='rgba(197,160,89,0.03)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.2), transparent);
+            z-index: 9999;
+        }
+        
+        .site-border {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.3), transparent);
+            z-index: 9999;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes float-center {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            33% { transform: translate(-45%, -55%) scale(1.05); }
+            66% { transform: translate(-55%, -45%) scale(0.95); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .items-grid > .item-card:nth-child(1) { transition-delay: 0.1s; }
+        .items-grid > .item-card:nth-child(2) { transition-delay: 0.3s; }
+        .items-grid > .item-card:nth-child(3) { transition-delay: 0.5s; }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .container { max-width: 100%; }
+            header { padding: 30px 0 30px; margin-bottom: 25px; }
+            .logo { font-size: 2rem; letter-spacing: 4px; }
+            .subtitle { font-size: 0.7rem; letter-spacing: 2px; }
+            .intro { margin-bottom: 30px; }
+            .intro h1 { font-size: 1.6rem; }
+            .intro p { font-size: 0.95rem; }
+            .item-card { flex-direction: column; border-radius: 6px; }
+            .item-image { min-height: 220px; gap: 10px; padding: 15px; }
+            .item-image img { max-width: 40%; max-height: 180px; }
+            .item-content { padding: 20px; }
+            .item-tag { font-size: 0.65rem; padding: 4px 10px; }
+            .item-title { font-size: 1.3rem; }
+            .item-subtitle { font-size: 0.8rem; margin-bottom: 12px; }
+            .item-specs { margin-bottom: 15px; }
+            .item-specs li { font-size: 0.8rem; padding: 6px 0; }
+            .price-row { flex-direction: row; gap: 0; justify-content: space-between; padding: 10px 15px; }
+            .price-value { font-size: 1.1rem; }
+            .summary { margin-top: 35px; padding: 20px; }
+            .summary h2 { font-size: 1.4rem; margin-bottom: 18px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .cta { margin-top: 30px; padding: 25px 15px; }
+            .cta h2 { font-size: 1.4rem; }
+            .cta p { font-size: 0.9rem; margin-bottom: 15px; }
+            .highlight-price { font-size: 1.6rem; }
+            .payment-options-row { flex-direction: column; }
+            .payment-box { padding: 15px 25px; }
+            .payment-box:first-child { border-radius: 8px 8px 0 0; border-left: 1px solid #c5a059; border-bottom: none; }
+            .payment-box:last-child { border-radius: 0 0 8px 8px; border-left: 1px solid #c5a059; }
+            .payment-value { font-size: 1.2rem; }
+            .payment-save { font-size: 0.65rem; }
+            .payment-sub { font-size: 0.6rem; }
+            .highlight-note { font-size: 0.8rem; }
+            .cta-button { padding: 14px 30px; font-size: 0.9rem; }
+            .urgency { margin-top: 15px; }
+            .trust-badges { gap: 15px; margin-top: 18px; flex-direction: column; align-items: center; }
+            .badge { font-size: 0.7rem; }
+            .footer { margin-top: 35px; padding: 25px 0; font-size: 0.75rem; }
+            
+            .lightbox { padding: 20px; }
+            .lightbox-content img { max-height: 50vh; }
+            .lightbox-nav { font-size: 1.5rem; }
+            .lightbox-prev { left: 5px; }
+            .lightbox-next { right: 5px; }
+            .lightbox-info { font-size: 1rem; }
+            .lightbox-close { top: -40px; right: 0; font-size: 1.5rem; }
+        }
+
+        @media (max-width: 400px) {
+            .container { padding: 20px 15px; }
+            .logo { font-size: 1.6rem; }
+            .intro h1 { font-size: 1.4rem; }
+            .item-image { min-height: 200px; }
+            .item-title { font-size: 1.1rem; }
+            .urgency span { font-size: 0.75rem; }
+        }
+        
+        header { text-align: center; padding: 50px 0 40px; border-bottom: 1px solid #1e1e2a; margin-bottom: 40px; position: relative; }
+        header::after {
+            content: '✦';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #c5a059;
+            font-size: 0.8rem;
+            background: #0a0a0f;
+            padding: 0 15px;
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: 3rem; color: #c5a059; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 8px; }
+        .subtitle { font-size: 0.85rem; letter-spacing: 3px; color: #a0a0a0; text-transform: uppercase; }
+        
+        .intro { text-align: center; margin-bottom: 50px; }
+        .intro h1 { font-size: 2.2rem; margin-bottom: 15px; color: #e2c28a; }
+        .intro p { font-size: 1.1rem; color: #a0a0a0; max-width: 550px; margin: 0 auto; }
+        
+        .items-grid { display: flex; flex-direction: column; gap: 40px; position: relative; }
+        .items-grid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(197, 160, 89, 0.2), transparent);
+        }
+        
+        .item-card { 
+            background-color: #0a0a0f; 
+            border: 1px solid #c5a059; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            display: flex; 
+            position: relative;
+        }
+        .item-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c5a059, transparent);
+        }
+        @media (max-width: 700px) { .item-card { flex-direction: column; } }
+        
+        .item-image { flex: 1; min-height: 320px; background-color: #0a0a0f; display: flex; align-items: center; justify-content: center; padding: 20px; gap: 15px; cursor: pointer; transition: all 0.3s ease; }
+        .item-image:hover { background-color: #0f0f15; }
+        .item-image:hover img { transform: scale(1.05); }
+        .item-image img { max-width: 45%; max-height: 280px; object-fit: contain; transition: transform 0.3s ease; }
+        .item-image::after {
+            content: '🔍';
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .item-image:hover::after { opacity: 0.7; }
+        
+        .item-content { flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #faf8f3 0%, #f5efe0 50%, #faf8f3 100%); color: #1a1a1a; }
+        
+        .item-tag { display: inline-block; background: rgba(197, 160, 89, 0.2); color: #8a6917; padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; margin-bottom: 12px; width: fit-content; }
+        .item-title { font-size: 1.6rem; margin-bottom: 5px; color: #1a1a1a; }
+        .item-subtitle { font-size: 0.85rem; color: #8a6917; margin-bottom: 18px; font-style: italic; }
+        
+        .item-specs { list-style: none; margin-bottom: 20px; }
+        .item-specs li { padding: 8px 0; border-bottom: 1px solid #d4c8a8; display: flex; justify-content: space-between; font-size: 0.85rem; color: #333333; }
+        .item-specs li span { color: #8a6917; font-weight: 600; }
+        
+        .price-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: rgba(197, 160, 89, 0.1); border-radius: 6px; border: 1px solid #8a6917; }
+        .price-label { font-size: 0.85rem; color: #a0a0a0; }
+        .price-value { font-size: 1.3rem; font-weight: 700; color: #e2c28a; }
+        
+        .summary { margin-top: 50px; padding: 35px; background: #14141c; border-radius: 8px; border: 1px solid #1e1e2a; position: relative; }
+        .summary::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: #c5a059;
+        }
+        .summary h2 { text-align: center; font-size: 1.8rem; margin-bottom: 25px; color: #e2c28a; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th { text-align: left; padding: 12px; border-bottom: 2px solid #c5a059; color: #c5a059; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; }
+        td { padding: 12px; border-bottom: 1px solid #1e1e2a; font-size: 0.9rem; }
+        .total-row { background: rgba(197, 160, 89, 0.1); }
+        .total-label { font-weight: 700; color: #e2c28a; }
+        .total-row td:last-child { font-weight: 700; color: #e2c28a; font-size: 1.1rem; }
+        .note { text-align: center; font-size: 0.8rem; color: #a0a0a0; font-style: italic; }
+        
+        .cta { text-align: center; margin-top: 40px; padding: 35px; background: linear-gradient(135deg, rgba(197, 160, 89, 0.08) 0%, rgba(20, 20, 28, 1) 100%); border-radius: 8px; border: 1px solid #c5a059; position: relative; }
+        .cta::before, .cta::after {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #c5a059;
+            font-size: 0.6rem;
+            opacity: 0.5;
+        }
+        .cta::before { left: 20px; }
+        .cta::after { right: 20px; }
+        .cta h2 { font-size: 1.8rem; margin-bottom: 12px; color: #e2c28a; }
+        .cta p { color: #a0a0a0; margin-bottom: 22px; font-size: 1rem; }
+        .cta-button { display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #c5a059 0%, #e2c28a 50%, #c5a059 100%); color: #0a0a0f; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; border-radius: 4px; width: 100%; max-width: 300px; }
+
+        .payment-highlight { 
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.15) 0%, rgba(30, 30, 42, 1) 100%);
+            border: 1px solid #c5a059; 
+            border-radius: 8px; 
+            padding: 25px 20px; 
+            margin-bottom: 25px;
+            position: relative;
+            text-align: center;
+        }
+        .highlight-badge {
+            background: linear-gradient(135deg, #c5a059, #e2c28a);
+            color: #0a0a0f;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .payment-cta { position: relative; display: inline-block; margin-bottom: 25px; }
+        .payment-glow {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #c5a059, #e2c28a, #c5a059);
+            background-size: 200% 200%;
+            border-radius: 10px;
+            opacity: 0.3;
+            filter: blur(10px);
+            z-index: 0;
+            animation: shimmer 4s infinite linear;
+        }
+        .payment-options-row { display: flex; gap: 0; position: relative; z-index: 1; }
+        .payment-box {
+            flex: 1;
+            background: #14141c;
+            border: 1px solid #c5a059;
+            padding: 20px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .payment-box:first-child { border-radius: 8px 0 0 8px; }
+        .payment-box:last-child { border-radius: 0 8px 8px 0; border-left: none; }
+        .payment-box:hover { background: rgba(197, 160, 89, 0.1); transform: scale(1.02); }
+        .payment-box:active { transform: scale(0.98); }
+        .payment-click { 
+            font-size: 0.65rem; 
+            color: #666; 
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .payment-click.highlight {
+            color: #c5a059;
+            font-weight: 600;
+            font-size: 0.7rem;
+        }
+        .payment-box.featured { background: rgba(197, 160, 89, 0.15); border-color: #e2c28a; }
+        .payment-box.featured .payment-value { color: #4ade80; }
+        .payment-tag { 
+            font-size: 0.6rem; 
+            font-weight: 700; 
+            color: #0a0a0f; 
+            background: linear-gradient(135deg, #c5a059, #e2c28a);
+            padding: 3px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .payment-title { font-size: 0.9rem; color: #a0a0a0; margin-bottom: 5px; }
+        .payment-value { font-size: 1.4rem; font-weight: 700; color: #e2c28a; }
+        .payment-save { 
+            font-size: 0.7rem; 
+            color: #4ade80; 
+            margin-top: 5px;
+        }
+        .payment-sub { font-size: 0.65rem; color: #666; margin-top: 2px; }
+        
+        .cta h2 { font-size: 1.8rem; margin-bottom: 12px; color: #e2c28a; }
+        .highlight-price { font-size: 2rem; font-weight: 700; color: #e2c28a; margin-bottom: 12px; }
+        .highlight-note { font-size: 0.85rem; color: #a0a0a0; line-height: 1.8; }
+        
+        .installment-option {
+            display: inline-block;
+            background: #1e1e2a;
+            border: 1px solid #1e1e2a;
+            border-radius: 6px;
+            padding: 12px 20px;
+            text-align: center;
+        }
+        .installment-label { display: block; font-size: 0.8rem; color: #a0a0a0; margin-bottom: 3px; }
+        .installment-price { display: block; font-size: 1.1rem; font-weight: 700; color: #e2c28a; }
+        .installment-note { display: block; font-size: 0.7rem; color: #c5a059; margin-top: 3px; }
+        
+        .trust-badges { display: flex; justify-content: center; gap: 30px; margin-top: 25px; flex-wrap: wrap; }
+        .badge { display: flex; align-items: center; gap: 8px; color: #a0a0a0; font-size: 0.8rem; }
+        .badge svg { width: 20px; height: 20px; fill: #c5a059; }
+        
+        .proof { margin-top: 35px; padding: 25px; text-align: center; border-top: 1px solid #1e1e2a; }
+        .proof h4 { color: #a0a0a0; font-size: 0.8rem; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 2px; }
+        .testimonials { display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; }
+        .testimonial { max-width: 280px; padding: 18px; background: #1e1e2a; border-radius: 6px; }
+        .testimonial p { font-style: italic; color: #a0a0a0; font-size: 0.85rem; margin-bottom: 12px; }
+        .testimonial-author { color: #c5a059; font-weight: 600; font-size: 0.8rem; }
+        
+        .whatsapp-fixed { display: none; }
+        
+        .footer { text-align: center; margin-top: 50px; padding: 30px 0; border-top: 1px solid #1e1e2a; color: #a0a0a0; font-size: 0.85rem; position: relative; }
+.footer::before {
+            content: '—';
+            display: block;
+            color: #c5a059;
+            margin-bottom: 15px;
+            letter-spacing: 10px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85%;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border: 1px solid #c5a059;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: #c5a059;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+        .lightbox-close:hover { color: #e2c28a; transform: rotate(90deg); }
+        .lightbox-info {
+            text-align: center;
+            margin-top: 20px;
+            color: #c5a059;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #c5a059;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 20px;
+            transition: all 0.3s ease;
+            z-index: 10000;
+        }
+        .lightbox-nav:hover { color: #e2c28a; }
+        .lightbox-prev { left: -80px; }
+        .lightbox-next { right: -80px; }
+        @media (max-width: 800px) {
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+        }
+        .lightbox-counter {
+            text-align: center;
+            margin-top: 15px;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-orbs"></div>
+    <div class="container">
+        <header class="animate-on-scroll">
+            <div class="logo">GATIER</div>
+            <div class="subtitle">Urban Elegance</div>
+        </header>
+
+        <section class="intro animate-on-scroll">
+            <h1>Proposta de Materiais Gráficos</h1>
+            <p>Desenvolvimento de identidade tátil e papelaria de luxo para elevar a experiência da marca GATIER.</p>
+        </section>
+
+        <div class="items-grid">
+            <article class="item-card animate-on-scroll">
+                <div class="item-image" onclick="openLightbox('adesivo 5x5cm redondo@4x.webp', 'Adesivo Redondo - 5x5cm')">
+                    <img src="adesivo 5x5cm redondo@4x.webp" alt="Adesivo">
+                </div>
+                <div class="item-content">
+                    <span class="item-tag">Papelaria</span>
+                    <h2 class="item-title">Adesivo Redondo</h2>
+                    <p class="item-subtitle">Alta durabilidade com laminação brilho</p>
+                    <ul class="item-specs">
+                        <li>Tamanho: <span>5 x 5 cm</span></li>
+                        <li>Impressão: <span>Frente (4x0)</span></li>
+                        <li>Papel: <span>Couché Adesivo</span></li>
+                        <li>Acabamento: <span>Laminação Brilho</span></li>
+                        <li>Formato: <span>Circular</span></li>
+                    </ul>
+                    <div class="price-row">
+                        <span class="price-label">250x</span>
+                        <span class="price-value">103,80</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="item-card animate-on-scroll">
+                <div class="item-image" onclick="openLightboxMulti(['Cartão Obrigado 10x10cm frente@4x.webp', 'Cartão Obrigado 10x10cm verso@4x.webp'], 'Cartão de Agradecimento - 10x10cm')">
+                    <img src="Cartão Obrigado 10x10cm frente@4x.webp" alt="Cartão Frente">
+                    <img src="Cartão Obrigado 10x10cm verso@4x.webp" alt="Cartão Verso">
+                </div>
+                <div class="item-content">
+                    <span class="item-tag">Experiência do Cliente</span>
+                    <h2 class="item-title">Cartão de Agradecimento</h2>
+                    <p class="item-subtitle">Frente e Verso inclusos</p>
+                    <ul class="item-specs">
+                        <li>Tamanho: <span>10 x 10 cm</span></li>
+                        <li>Impressão: <span>Frente e Verso (4x4)</span></li>
+                        <li>Papel: <span>Markatto Opalina 240g</span></li>
+                        <li>Acabamento: <span>Refile</span></li>
+                        <li>Extras: <span>Sem Enobrecimento</span></li>
+                    </ul>
+                    <div class="price-row">
+                        <span class="price-label">250x</span>
+                        <span class="price-value">199,74</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="item-card animate-on-scroll">
+                <div class="item-image" onclick="openLightboxMulti(['Tag frente@4x.webp', 'tag verso@4x.webp'], 'Tag para Roupas - 4,8x14cm')">
+                    <img src="Tag frente@4x.webp" alt="Tag Frente">
+                    <img src="tag verso@4x.webp" alt="Tag Verso">
+                </div>
+                <div class="item-content">
+                    <span class="item-tag">Vestuário</span>
+                    <h2 class="item-title">Tag para Roupas</h2>
+                    <p class="item-subtitle">Frente e Verso inclusos</p>
+                    <ul class="item-specs">
+                        <li>Tamanho: <span>4,8 x 14 cm</span></li>
+                        <li>Impressão: <span>Frente e Verso (4x4)</span></li>
+                        <li>Papel: <span>Cartão 300g</span></li>
+                        <li>Acabamento: <span>Laminação Fosca</span></li>
+                        <li>Extras: <span>Furo Central</span></li>
+                    </ul>
+                    <div class="price-row">
+                        <span class="price-label">250x</span>
+                        <span class="price-value">167,88</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <section class="summary animate-on-scroll">
+            <h2>Resumo do Investimento</h2>
+            <table>
+                <thead>
+                    <tr><th>Item</th><th>Qtd</th><th>Un.</th><th>Total</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Adesivo 5x5 cm</td><td>250</td><td>0,42</td><td>103,80</td></tr>
+                    <tr><td>Cartão 10x10 cm</td><td>250</td><td>0,80</td><td>199,74</td></tr>
+                    <tr><td>Tag 4,8x14 cm</td><td>250</td><td>0,67</td><td>167,88</td></tr>
+                    
+                </tbody>
+            </table>
+            <p class="note">* Frete incluso (R$ 107,00 distribuído). Valores sujeitos a verificação.</p>
+        </section>
+
+        <section class="cta animate-on-scroll">
+            <h2>Escolha a Forma de Pagamento</h2>
+            <p style="margin-bottom: 20px;">Clique na opção desejada para confirmar via WhatsApp:</p>
+            
+<div class="payment-cta">
+                <div class="payment-glow"></div>
+                <div class="payment-options-row">
+                    <div class="payment-box featured" onclick="window.open('https://wa.me/+5511981765177?text=Quero+finalizar+minha+encomenda+no+PIX+(471,42)', '_blank')">
+                        <div class="payment-tag">⭐ MELHOR</div>
+                        <div class="payment-title">PIX</div>
+                        <div class="payment-value">471,42</div>
+                        <div class="payment-save">Economize 10%</div>
+                        <div class="payment-click highlight">→ Confirmar via WhatsApp</div>
+                    </div>
+                    <div class="payment-box" onclick="window.open('https://wa.me/+5511981765177?text=Quero+finalizar+minha+encomenda+no+Cart%C3%A3o+3x+(172,85)+-+Total:+518,55', '_blank')">
+                        <div class="payment-title">Cartão</div>
+                        <div class="payment-value">172,85</div>
+                        <div class="payment-sub">3x de</div>
+                        <div class="payment-click">Clique para confirmar</div>
+                    </div>
+                </div>
+            </div>
+             
+            <div class="trust-badges">
+                <div class="badge"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg><span>Qualidade Garantida</span></div>
+                <div class="badge"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span>Satisfação Garantida</span></div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Proposta elaborada por <span class="leo-design">Leo Design</span> para GATIER Style.</p>
+            <p style="margin-top: 8px;">&copy; 2026 Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-nav lightbox-prev" id="lb-prev" onclick="navigateLightbox(-1)" style="display:none">❮</span>
+        <span class="lightbox-nav lightbox-next" id="lb-next" onclick="navigateLightbox(1)" style="display:none">❯</span>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+            <img id="lightbox-img" src="" alt="Imagem ampliada">
+            <p class="lightbox-info" id="lightbox-title"></p>
+            <p class="lightbox-counter" id="lightbox-counter"></p>
+        </div>
+    </div>
+
+    <script>
+        let currentImages = [];
+        let currentIndex = 0;
+
+        function openLightbox(imgSrc, title) {
+            currentImages = [imgSrc];
+            currentIndex = 0;
+            updateLightbox(title);
+        }
+
+        function openLightboxMulti(images, title) {
+            currentImages = images;
+            currentIndex = 0;
+            updateLightbox(title);
+        }
+
+        function updateLightbox(title) {
+            document.getElementById('lightbox-img').src = currentImages[currentIndex];
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-counter').textContent = currentImages.length > 1 ? (currentIndex + 1) + ' / ' + currentImages.length : '';
+            
+            const showNav = currentImages.length > 1;
+            document.getElementById('lb-prev').style.display = showNav ? 'block' : 'none';
+            document.getElementById('lb-next').style.display = showNav ? 'block' : 'none';
+            
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function navigateLightbox(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = currentImages.length - 1;
+            if (currentIndex >= currentImages.length) currentIndex = 0;
+            document.getElementById('lightbox-img').src = currentImages[currentIndex];
+            document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + currentImages.length;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft' && currentImages.length > 1) navigateLightbox(-1);
+            if (e.key === 'ArrowRight' && currentImages.length > 1) navigateLightbox(1);
+        });
+
+        // Intersection Observer para animações de scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Inicializa elementos que já estão na tela ao carregar
+        setTimeout(() => {
+            document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.classList.add('visible');
+                    observer.unobserve(el);
+                }
+            });
+        }, 100);
+
+    </script>
+</body>
+</html>
